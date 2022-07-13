@@ -11,5 +11,5 @@ class LoadAssetsAction(Action):
     def execute(self, cast, script, callback):
         # self._audio_service.load_sounds("batter/assets/sounds")
         self._video_service.load_fonts(FONTS_PATH)
-        self._video_service.load_images("final/rush/assets/images")
+        self._video_service.load_images(IMAGES_PATH)
         
