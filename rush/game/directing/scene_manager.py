@@ -195,37 +195,6 @@ class SceneManager:
         
         cast.add_actor(ROAD_GROUP, right_wall)
 
-
-        # stats = cast.get_first_actor(STATS_GROUP)
-        # level = stats.get_level() % BASE_LEVELS
-        # filename = LEVEL_FILE.format(level)
-
-        # with open(filename, 'r') as file:
-        #     reader = csv.reader(file, skipinitialspace=True)
-
-        #     for r, row in enumerate(reader):
-        #         for c, column in enumerate(row):
-
-        #             x = FIELD_LEFT + c * BRICK_WIDTH
-        #             y = FIELD_TOP + r * BRICK_HEIGHT
-        #             color = column[0]
-        #             frames = int(column[1])
-        #             points = BRICK_POINTS 
-                    
-        #             if frames == 1:
-        #                 points *= 2
-                    
-        #             position = Point(x, y)
-        #             size = Point(BRICK_WIDTH, BRICK_HEIGHT)
-        #             velocity = Point(0, 0)
-        #             images = BRICK_IMAGES[color][0:frames]
-
-        #             body = Body(position, size, velocity)
-        #             animation = Animation(images, BRICK_RATE, BRICK_DELAY)
-
-        #             brick = Brick(body, animation, points)
-        #             cast.add_actor(BRICK_GROUP, brick)
-
     def _add_dialog(self, cast, message):
         cast.clear_actors(DIALOG_GROUP)
         text = Text(message, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
