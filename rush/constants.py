@@ -105,6 +105,7 @@ CAR_VELOCITY = 5
 
 
 ROAD_GROUP = "road_walls"
+
 ROAD_IMAGES = {
     "left":{
             "path" : f"{ASSETS_DIR}/images/left.png",
