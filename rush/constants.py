@@ -32,9 +32,11 @@ FONT_SMALL = 32
 FONT_LARGE = 48
 
 # SOUND
-BOUNCE_SOUND = f"{ASSETS_DIR}/sounds/boing.wav"
-WELCOME_SOUND = f"{ASSETS_DIR}/sounds/start.wav"
-OVER_SOUND = f"{ASSETS_DIR}/sounds/over.wav"
+SOUNDS_PATH = f"{ASSETS_DIR}/sounds"
+EFFECTS_PATH = f"{ASSETS_DIR}/sounds/effects"
+MUSIC_PATH = f"{ASSETS_DIR}/sounds/music"
+CRASH = f"{EFFECTS_PATH}/crash.ogg"
+BACKGROUND_MUSIC = f"{MUSIC_PATH}/music.ogg"
 
 # TEXT
 ALIGN_CENTER = 0
@@ -78,6 +80,7 @@ UPDATE = 3
 OUTPUT = 4
 UNLOAD = 5
 RELEASE = 6
+CUSTOM = 7
 
 # -------------------------------------------------------------------------------------------------- 
 # CASTING CONSTANTS

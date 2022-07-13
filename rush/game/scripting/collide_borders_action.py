@@ -5,7 +5,7 @@ from game.scripting.action import Action
 
 class CollideBordersAction(Action):
 
-    def __init__(self, physics_service, audio_service):
+    def __init__(self, physics_service):
         self._physics_service = physics_service
         # self._audio_service = audio_service    
         
