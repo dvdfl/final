@@ -6,22 +6,20 @@ from game.casting.point import Point
 
 #class Ball(Actor):
 class Road():
-    """A solid, spherical object that is bounced around in the game."""
+    """A solid, rectangle static object in the game."""
     
-    def __init__(self, body, image, debug = False):
-        """Constructs a new Ball.
+    def __init__(self, body, image):
+        """Constructs a new Road part.
 
         Args:
             body: A new instance of Body.
             image: A new instance of Image.
-            debug: If it is being debugged. 
         """
-        # super().__init__(debug)
         self._body = body
         self._image = image
 
     def get_body(self):
-        """Gets the ball's body.
+        """Gets the road's body.
         
         Returns:
             An instance of Body.
@@ -29,7 +27,7 @@ class Road():
         return self._body
 
     def get_image(self):
-        """Gets the ball's image.
+        """Gets the road's image.
         
         Returns:
             An instance of Image.
