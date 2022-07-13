@@ -1,5 +1,6 @@
 from constants import *
 from game.scripting.action import Action
+
 class CollideTrafficAction(Action):
     def __init__(self, physics_service):
         super().__init__()
@@ -17,6 +18,6 @@ class CollideTrafficAction(Action):
                 
                 if self._physics_service.has_collided(car_body, traffic_body):
                     callback.on_next(GAME_OVER)
-                    # sound = Sound(BOUNCE_SOUND)
+                    # sound = Sound(CRASH_SOUND)
                     # self._audio_service.play_sound(sound)    
 

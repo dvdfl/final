@@ -61,7 +61,7 @@ class Car():
     def accelerate(self):
         """Moves car forward"""
         position = self._body.get_position()
-        if position.get_y() > CAR_HEIGHT:
+        if position.get_y() > ROAD_TOP:
             velocity = Point(0, -CAR_VELOCITY)
             self._body.set_velocity(velocity)
         else:
@@ -70,7 +70,7 @@ class Car():
     def back_up(self):
         """Moves car backwards"""
         position = self._body.get_position()
-        if position.get_y() < (SCREEN_HEIGHT - CAR_HEIGHT):
+        if position.get_y() < ROAD_BOTTOM:
             velocity = Point(0, CAR_VELOCITY)
             self._body.set_velocity(velocity)
         else:

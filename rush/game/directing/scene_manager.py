@@ -1,6 +1,4 @@
-import csv
 from constants import *
-#from game.casting.animation import Animation
 from game.casting.car import Car
 from game.casting.body import Body
 from game.casting.road import Road
@@ -15,11 +13,9 @@ from game.scripting.collide_borders_action import CollideBordersAction
 from game.scripting.collide_traffic_action import CollideTrafficAction
 from game.scripting.control_car_action import ControlCarAction
 from game.scripting.control_traffic_action import ControlTrafficAction
-# from game.scripting.draw_ball_action import DrawBallAction
 from game.scripting.draw_car_action import DrawCarAction
 from game.scripting.draw_road_action import DrawRoadAction
 from game.scripting.draw_traffic_action import DrawTrafficAction
-# from game.scripting.draw_bricks_action import DrawBricksAction
 from game.scripting.draw_dialog_action import DrawDialogAction
 from game.scripting.draw_hud_action import DrawHudAction
 from game.scripting.effect_playback_action import EffectPlaybackAction
@@ -33,7 +29,6 @@ from game.scripting.release_devices_action import ReleaseDevicesAction
 from game.scripting.start_drawing_action import StartDrawingAction
 # from game.scripting.timed_change_scene_action import TimedChangeSceneAction
 from game.scripting.unload_assets_action import UnloadAssetsAction
-# from game.services.raylib.raylib_audio_service import RaylibAudioService
 from game.services.raylib.raylib_keyboard_service import RaylibKeyboardService
 from game.services.raylib.raylib_physics_service import RaylibPhysicsService
 from game.services.raylib.raylib_video_service import RaylibVideoService
@@ -52,21 +47,16 @@ class SceneManager:
     # CHECK_OVER_ACTION = CheckOverAction()
     COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE)
     COLLIDE_TRAFFIC_ACTION = CollideTrafficAction(PHYSICS_SERVICE)
-    # CONTROL_RACKET_ACTION = ControlRacketAction(KEYBOARD_SERVICE)
     CONTROL_CAR_ACTION = ControlCarAction(KEYBOARD_SERVICE)
     CONTROL_TRAFFIC_ACTION = ControlTrafficAction()
 
-    # DRAW_BALL_ACTION = DrawBallAction(VIDEO_SERVICE)
     DRAW_CAR_ACTION = DrawCarAction(VIDEO_SERVICE)
     DRAW_ROAD_ACTION = DrawRoadAction(VIDEO_SERVICE)
     DRAW_TRAFFIC_ACTION = DrawTrafficAction(VIDEO_SERVICE)
-    # DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
-    # DRAW_RACKET_ACTION= DrawRacketAction(VIDEO_SERVICE)
     END_DRAWING_ACTION = EndDrawingAction(VIDEO_SERVICE)
-    INITIALIZE_DEVICES_ACTION = InitializeDevicesAction(
-        AUDIO_SERVICE, VIDEO_SERVICE)
+    INITIALIZE_DEVICES_ACTION = InitializeDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
     MOVE_CAR_ACTION = MoveCarAction()
     MOVE_TRAFFIC_ACTION = MoveTrafficAction()
@@ -82,8 +72,6 @@ class SceneManager:
             self._prepare_new_game(cast, script)
         elif scene == NEXT_LEVEL:
             self._prepare_next_level(cast, script)
-        elif scene == TRY_AGAIN:
-            self._prepare_try_again(cast, script)
         elif scene == IN_PLAY:
             self._prepare_in_play(cast, script)
         elif scene == GAME_OVER:
@@ -96,7 +84,6 @@ class SceneManager:
     def _prepare_new_game(self, cast, script):
         self._add_stats(cast)
         self._add_level(cast)
-        # self._add_lives(cast)
         self._add_score(cast)
         self._add_car(cast)
         self._add_dialog(cast, ENTER_TO_START)
@@ -113,24 +100,10 @@ class SceneManager:
 
     def _prepare_next_level(self, cast, script):
         self._add_car(cast)
-        # self._add_dialog(cast, PREP_TO_LAUNCH)
-
         script.clear_actions(INPUT)
         #script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
         self._add_output_script(script)
-        #script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
-
         self.prepare_scene(IN_PLAY, cast, script)
-
-    def _prepare_try_again(self, cast, script):
-        self._add_car(cast)
-        self._add_racket(cast)
-        self._add_dialog(cast, PREP_TO_LAUNCH)
-
-        script.clear_actions(INPUT)
-        # script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
-        self._add_update_script(script)
-        self._add_output_script(script)
 
     def _prepare_in_play(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
@@ -142,7 +115,6 @@ class SceneManager:
         self._add_output_script(script)
 
     def _prepare_game_over(self, cast, script):
-        # self._add_car(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
 
         script.clear_actions(INPUT)
@@ -214,17 +186,10 @@ class SceneManager:
         label = Label(text, position)
         cast.add_actor(LEVEL_GROUP, label)
 
-    def _add_lives(self, cast):
-        cast.clear_actors(LIVES_GROUP)
-        text = Text(LIVES_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_RIGHT)
-        position = Point(SCREEN_WIDTH - HUD_MARGIN, HUD_MARGIN)
-        label = Label(text, position)
-        cast.add_actor(LIVES_GROUP, label)
-
     def _add_score(self, cast):
         cast.clear_actors(SCORE_GROUP)
-        text = Text(SCORE_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
-        position = Point(CENTER_X, HUD_MARGIN)
+        text = Text(SCORE_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_RIGHT)
+        position = Point(SCREEN_WIDTH - HUD_MARGIN, HUD_MARGIN)
         label = Label(text, position)
         cast.add_actor(SCORE_GROUP, label)
 
@@ -236,7 +201,6 @@ class SceneManager:
     # ----------------------------------------------------------------------------------------------
     # scripting methods
     # ----------------------------------------------------------------------------------------------
-
     def _add_initialize_script(self, script):
         script.clear_actions(INITIALIZE)
         script.add_action(INITIALIZE, self.INITIALIZE_DEVICES_ACTION)

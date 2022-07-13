@@ -4,7 +4,7 @@ from game.directing.scene_manager import SceneManager
 
 
 def main():
-    director = Director(SceneManager.VIDEO_SERVICE, SceneManager.AUDIO_SERVICE)
+    director = Director(SceneManager.VIDEO_SERVICE)
     director.start_game()
 
 if __name__ == "__main__":

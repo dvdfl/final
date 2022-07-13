@@ -19,12 +19,6 @@ CENTER_Y = SCREEN_HEIGHT / 2
 ASSETS_DIR = f'{pathlib.Path(__file__).parent.resolve()}/assets'
 IMAGES_PATH = f"{ASSETS_DIR}/images"
 
-# FIELD
-FIELD_TOP = 60
-FIELD_BOTTOM = SCREEN_HEIGHT
-FIELD_LEFT = 0
-FIELD_RIGHT = SCREEN_WIDTH
-
 # FONT
 FONTS_PATH = f"{ASSETS_DIR}/fonts" 
 FONT_FILE = FONTS_PATH + "/zorque.otf"
@@ -33,8 +27,8 @@ FONT_LARGE = 48
 
 # SOUND
 SOUNDS_PATH = f"{ASSETS_DIR}/sounds"
-EFFECTS_PATH = f"{ASSETS_DIR}/sounds/effects"
-MUSIC_PATH = f"{ASSETS_DIR}/sounds/music"
+EFFECTS_PATH = f"{SOUNDS_PATH}/effects"
+MUSIC_PATH = f"{SOUNDS_PATH}/music"
 CRASH = f"{EFFECTS_PATH}/crash.ogg"
 BACKGROUND_MUSIC = f"{MUSIC_PATH}/music.ogg"
 
@@ -65,7 +59,6 @@ IN_PLAY = 3
 GAME_OVER = 4
 
 # LEVELS
-LEVEL_FILE = f"{ASSETS_DIR}/data/level-{{:03}}.txt"
 BASE_LEVELS = 5
 
 # -------------------------------------------------------------------------------------------------- 
@@ -94,10 +87,8 @@ MAXIMUM_LIVES = 5
 # HUD
 HUD_MARGIN = 15
 LEVEL_GROUP = "level"
-LIVES_GROUP = "lives"
 SCORE_GROUP = "score"
 LEVEL_FORMAT = "LEVEL: {}"
-LIVES_FORMAT = "LIVES: {}"
 SCORE_FORMAT = "SCORE: {}"
 
 # CAR
@@ -108,8 +99,10 @@ CAR_HEIGHT = 47
 #CAR_RATE = 6 # used with animation
 CAR_VELOCITY = 5
 
-
+# ROAD
 ROAD_GROUP = "road_walls"
+ROAD_TOP = CAR_HEIGHT
+ROAD_BOTTOM = SCREEN_HEIGHT - CAR_HEIGHT
 ROAD_IMAGES = {
     "left":{
             "path" : f"{ASSETS_DIR}/images/left.png",
@@ -140,7 +133,6 @@ CAR_IMAGES = [
 # DIALOG
 DIALOG_GROUP = "dialogs"
 ENTER_TO_START = "PRESS ENTER TO START"
-PREP_TO_LAUNCH = "PREPARING TO LAUNCH"
 WAS_GOOD_GAME = "GAME OVER"
 
 

@@ -4,7 +4,7 @@ from game.scripting.script import Script
 from game.directing.scene_manager import SceneManager
 
 class Director():
-    def __init__(self, video_service, audio_service):
+    def __init__(self, video_service):
 
         """Constructs a new Director using the specified video service.
         
@@ -12,7 +12,6 @@ class Director():
             video_service (VideoService): An instance of VideoService.
         """
         self._video_service = video_service
-        self._audio_service = audio_service
         self._cast = Cast()
         self._script = Script()
         self._scene_manager = SceneManager()
@@ -38,9 +37,7 @@ class Director():
             self._execute_actions(OUTPUT)
             self._execute_actions(CUSTOM)
         self._execute_actions(UNLOAD)
-        #self._execute_actions(RELEASE)
-        self._audio_service.release()
-        self._video_service.release()
+        self._execute_actions(RELEASE)
 
     def _execute_actions(self, group):
         """Calls execute for each action in the given group.
