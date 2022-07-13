@@ -1,8 +1,4 @@
 from constants import *
-from game.casting.car import Car
-from game.casting.image import Image
-from game.casting.body import Body
-from game.casting.point import Point
 from game.scripting.action import Action
 
 class DrawTrafficAction(Action):

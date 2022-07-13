@@ -13,5 +13,9 @@ class ControlCarAction(Action):
             car.steer_left()
         elif self._keyboard_service.is_key_down(RIGHT): 
             car.steer_right()  
+        elif self._keyboard_service.is_key_down(UP): 
+            car.accelerate()  
+        elif self._keyboard_service.is_key_down(DOWN): 
+            car.back_up()  
         else: 
             car.stop_moving()        

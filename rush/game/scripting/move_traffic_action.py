@@ -9,7 +9,10 @@ class MoveTrafficAction(Action):
         
 
     def execute(self, cast, script, callback):
-        velocity = Point(0, TRAFFIC_VELOCITY)
+        #speed set based on the current level + base_speed
+        stats = cast.get_first_actor(STATS_GROUP)
+        speed = TRAFFIC_VELOCITY + stats.get_level()
+        velocity = Point(0, speed)
         # self._body.set_velocity(velocity)
 
         cars = cast.get_actors(TRAFFIC_GROUP)

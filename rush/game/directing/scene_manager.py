@@ -91,7 +91,7 @@ class SceneManager:
     
     def _prepare_new_game(self, cast, script):
         self._add_stats(cast)
-        # self._add_level(cast)
+        self._add_level(cast)
         # self._add_lives(cast)
         self._add_score(cast)
         self._add_car(cast)
@@ -150,17 +150,15 @@ class SceneManager:
     # ----------------------------------------------------------------------------------------------
 
     def _add_car(self, cast):
-        # cast.clear_actors(BALL_GROUP)
         cast.clear_actors(CAR_GROUP)
         x = CENTER_X - CAR_WIDTH / 2
-        y = SCREEN_HEIGHT - CAR_HEIGHT  
+        y = SCREEN_HEIGHT - CAR_HEIGHT -10
         position = Point(x, y)
         size = Point(CAR_WIDTH, CAR_HEIGHT)
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
         image = Image(CAR_IMAGE)
         car = Car(body, image, True)
-        # cast.add_actor(BALL_GROUP, ball)
         cast.add_actor(CAR_GROUP, car)
 
     def _add_road_walls(self, cast):
@@ -243,9 +241,9 @@ class SceneManager:
     def _add_output_script(self, script):
         script.clear_actions(OUTPUT)
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
+        script.add_action(OUTPUT, self.DRAW_ROAD_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
         script.add_action(OUTPUT, self.DRAW_CAR_ACTION)
-        script.add_action(OUTPUT, self.DRAW_ROAD_ACTION)
         script.add_action(OUTPUT, self.DRAW_TRAFFIC_ACTION)
         script.add_action(OUTPUT, self.DRAW_DIALOG_ACTION)
         script.add_action(OUTPUT, self.END_DRAWING_ACTION)

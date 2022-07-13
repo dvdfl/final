@@ -57,3 +57,21 @@ class Car():
         """Stops the bat from moving."""
         velocity = Point(0, 0)
         self._body.set_velocity(velocity)
+    
+    def accelerate(self):
+        """Moves car forward"""
+        position = self._body.get_position()
+        if position.get_y() > CAR_HEIGHT:
+            velocity = Point(0, -CAR_VELOCITY)
+            self._body.set_velocity(velocity)
+        else:
+            self.stop_moving()
+
+    def back_up(self):
+        """Moves car backwards"""
+        position = self._body.get_position()
+        if position.get_y() < (SCREEN_HEIGHT - CAR_HEIGHT):
+            velocity = Point(0, CAR_VELOCITY)
+            self._body.set_velocity(velocity)
+        else:
+            self.stop_moving()

@@ -49,6 +49,8 @@ PURPLE = Color(255, 0, 255)
 # KEYS
 LEFT = "left"
 RIGHT = "right"
+UP = "up"
+DOWN = "down"
 SPACE = "space"
 ENTER = "enter"
 PAUSE = "p"
@@ -105,7 +107,6 @@ CAR_VELOCITY = 5
 
 
 ROAD_GROUP = "road_walls"
-
 ROAD_IMAGES = {
     "left":{
             "path" : f"{ASSETS_DIR}/images/left.png",
@@ -121,6 +122,7 @@ ROAD_IMAGES = {
 
 TRAFFIC_GROUP = "traffic"
 TRAFFIC_VELOCITY = 2
+TRAFFIC_LEVEL_THRESHOLD = 350
 TRAFFIC_CARS = 15
 TRAFFIC_POINTS = 10
 CAR_IMAGES = [

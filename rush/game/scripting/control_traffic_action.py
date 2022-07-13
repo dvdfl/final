@@ -62,12 +62,6 @@ class ControlTrafficAction(Action):
             last_car_position = cars[-1].get_body().get_position()
             car_y = last_car_position.get_y()
 
-        # for car in cars:
-        #     car_y = car.get_body().get_position().get_y()
-        #     print(f"car position: {car.get_body().get_position().get_x()}, {car_y}" )
-        #     if car_y > car_y:
-        #         car_y = car_y
-
         return car_y
 
    
@@ -75,3 +69,7 @@ class ControlTrafficAction(Action):
         points = TRAFFIC_POINTS # brick.get_points()
         stats = cast.get_first_actor(STATS_GROUP)
         stats.add_points(points)
+        
+        # Increase level every 
+        if stats.get_score() % TRAFFIC_LEVEL_THRESHOLD == 0:
+            stats.next_level()
