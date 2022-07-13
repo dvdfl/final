@@ -100,14 +100,23 @@ CAR_VELOCITY = 5
 
 
 ROAD_GROUP = "road_walls"
-ROAD_IMAGE = {
-    "left":"rush/assets/images/left.png",
-    "right":"rush/assets/images/right.png"
+ROAD_IMAGES = {
+    "left":{
+            "path" : "rush/assets/images/left.png",
+            "width" : 126,
+            "height" : 599
+        },
+    "right": {
+            "path" : "rush/assets/images/right.png",
+            "width": 303,
+            "height" : 598
+        }
     }
 
 TRAFFIC_GROUP = "traffic"
 TRAFFIC_VELOCITY = 2
 TRAFFIC_CARS = 15
+TRAFFIC_POINTS = 10
 CAR_IMAGES = [
     "rush/assets/images/car2.png",
     "rush/assets/images/car3.png",

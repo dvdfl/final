@@ -4,43 +4,36 @@ from constants import *
 from game.casting.car import Car
 from game.casting.body import Body
 from game.casting.road import Road
-# from game.casting.brick import Brick
 from game.casting.image import Image
 from game.casting.label import Label
 from game.casting.point import Point
-# from game.casting.stats import Stats
+from game.casting.stats import Stats
 from game.casting.text import Text 
 from game.scripting.change_scene_action import ChangeSceneAction
 # from game.scripting.check_over_action import CheckOverAction
 from game.scripting.collide_borders_action import CollideBordersAction
 from game.scripting.collide_traffic_action import CollideTrafficAction
-# from game.scripting.collide_brick_action import CollideBrickAction
-# from game.scripting.collide_racket_action import CollideRacketAction
-# from game.scripting.control_racket_action import ControlRacketAction
 from game.scripting.control_car_action import ControlCarAction
+from game.scripting.control_traffic_action import ControlTrafficAction
 # from game.scripting.draw_ball_action import DrawBallAction
 from game.scripting.draw_car_action import DrawCarAction
 from game.scripting.draw_road_action import DrawRoadAction
 from game.scripting.draw_traffic_action import DrawTrafficAction
 # from game.scripting.draw_bricks_action import DrawBricksAction
 from game.scripting.draw_dialog_action import DrawDialogAction
-# from game.scripting.draw_hud_action import DrawHudAction
-# from game.scripting.draw_racket_action import DrawRacketAction
+from game.scripting.draw_hud_action import DrawHudAction
 from game.scripting.end_drawing_action import EndDrawingAction
 from game.scripting.initialize_devices_action import InitializeDevicesAction
 from game.scripting.load_assets_action import LoadAssetsAction
-# from game.scripting.move_ball_action import MoveBallAction
-# from game.scripting.move_racket_action import MoveRacketAction
 from game.scripting.move_car_action import MoveCarAction
 from game.scripting.move_traffic_action import MoveTrafficAction
 # from game.scripting.play_sound_action import PlaySoundAction
 from game.scripting.release_devices_action import ReleaseDevicesAction
 from game.scripting.start_drawing_action import StartDrawingAction
 # from game.scripting.timed_change_scene_action import TimedChangeSceneAction
-# from game.scripting.unload_assets_action import UnloadAssetsAction
+from game.scripting.unload_assets_action import UnloadAssetsAction
 # from game.services.raylib.raylib_audio_service import RaylibAudioService
 from game.services.raylib.raylib_keyboard_service import RaylibKeyboardService
-# from game.services.raylib.raylib_mouse_service import RaylibMouseService
 from game.services.raylib.raylib_physics_service import RaylibPhysicsService
 from game.services.raylib.raylib_video_service import RaylibVideoService
 
@@ -50,17 +43,15 @@ class SceneManager:
     
     AUDIO_SERVICE = None #RaylibAudioService()
     KEYBOARD_SERVICE = RaylibKeyboardService()
-    # MOUSE_SERVICE = RaylibMouseService()
     PHYSICS_SERVICE = RaylibPhysicsService()
     VIDEO_SERVICE = RaylibVideoService(GAME_NAME, SCREEN_WIDTH, SCREEN_HEIGHT)
 
     # CHECK_OVER_ACTION = CheckOverAction()
     COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     COLLIDE_TRAFFIC_ACTION = CollideTrafficAction(PHYSICS_SERVICE)
-    # COLLIDE_BRICKS_ACTION = CollideBrickAction(PHYSICS_SERVICE, AUDIO_SERVICE)
-    # COLLIDE_RACKET_ACTION = CollideRacketAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     # CONTROL_RACKET_ACTION = ControlRacketAction(KEYBOARD_SERVICE)
     CONTROL_CAR_ACTION = ControlCarAction(KEYBOARD_SERVICE)
+    CONTROL_TRAFFIC_ACTION = ControlTrafficAction()
     
     # DRAW_BALL_ACTION = DrawBallAction(VIDEO_SERVICE)
     DRAW_CAR_ACTION = DrawCarAction(VIDEO_SERVICE)
@@ -68,18 +59,16 @@ class SceneManager:
     DRAW_TRAFFIC_ACTION = DrawTrafficAction(VIDEO_SERVICE)
     # DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
-    # DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
+    DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
     # DRAW_RACKET_ACTION= DrawRacketAction(VIDEO_SERVICE)
     END_DRAWING_ACTION = EndDrawingAction(VIDEO_SERVICE)
     INITIALIZE_DEVICES_ACTION = InitializeDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
-    # MOVE_BALL_ACTION = MoveBallAction()
-    # MOVE_RACKET_ACTION = MoveRacketAction()
     MOVE_CAR_ACTION = MoveCarAction()
     MOVE_TRAFFIC_ACTION = MoveTrafficAction()
     RELEASE_DEVICES_ACTION = ReleaseDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     START_DRAWING_ACTION = StartDrawingAction(VIDEO_SERVICE)
-    # UNLOAD_ASSETS_ACTION = UnloadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
+    UNLOAD_ASSETS_ACTION = UnloadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
 
     def __init__(self):
         pass
@@ -101,13 +90,11 @@ class SceneManager:
     # ----------------------------------------------------------------------------------------------
     
     def _prepare_new_game(self, cast, script):
-        # self._add_stats(cast)
+        self._add_stats(cast)
         # self._add_level(cast)
         # self._add_lives(cast)
-        # self._add_score(cast)
+        self._add_score(cast)
         self._add_car(cast)
-        # self._add_bricks(cast)
-        # self._add_racket(cast)
         self._add_dialog(cast, ENTER_TO_START)
         self._add_road_walls(cast)
 
@@ -121,8 +108,6 @@ class SceneManager:
         
     def _prepare_next_level(self, cast, script):
         self._add_car(cast)
-        # self._add_bricks(cast)
-        # self._add_racket(cast)
         # self._add_dialog(cast, PREP_TO_LAUNCH)
 
         script.clear_actions(INPUT)
@@ -146,14 +131,13 @@ class SceneManager:
         cast.clear_actors(DIALOG_GROUP)
 
         script.clear_actions(INPUT)
-        #script.add_action(INPUT, self.CONTROL_RACKET_ACTION)
         script.add_action(INPUT, self.CONTROL_CAR_ACTION)
+        
         self._add_update_script(script)
         self._add_output_script(script)
 
     def _prepare_game_over(self, cast, script):
         # self._add_car(cast)
-        # self._add_racket(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
 
         script.clear_actions(INPUT)
@@ -183,28 +167,30 @@ class SceneManager:
         cast.clear_actors(ROAD_GROUP)
 
         # LEFT WALL
+        left_road_image = ROAD_IMAGES['left']
+        right_road_image = ROAD_IMAGES['right']
 
-        x = 0 # CENTER_X - BALL_WIDTH / 2
-        y = 0 #SCREEN_HEIGHT - RACKET_HEIGHT - BALL_HEIGHT
-        
+        x = 0
+        y = 0
+
         position = Point(x, y)
-        size = Point(CAR_WIDTH, CAR_HEIGHT)
+        size = Point(left_road_image['width'], left_road_image['height'])
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
-        image = Image(ROAD_IMAGE['left'])
+        image = Image(left_road_image['path'])
         left_wall = Road(body, image, True)
         
         cast.add_actor(ROAD_GROUP, left_wall)
         
         # RIGHT WALL
-        x = SCREEN_WIDTH - 300
-        y = 0 # SCREEN_HEIGHT - RACKET_HEIGHT - BALL_HEIGHT
+        x = SCREEN_WIDTH - right_road_image['width'];
+        y = 0 
         
         position = Point(x, y)
-        size = Point(CAR_WIDTH, CAR_HEIGHT)
+        size = Point(right_road_image['width'], right_road_image['height'])
         velocity = Point(0, 0)
         right_body = Body(position, size, velocity)
-        right_image = Image(ROAD_IMAGE['right'])
+        right_image = Image(right_road_image['path'])
         right_wall = Road(right_body, right_image, True)
         
         cast.add_actor(ROAD_GROUP, right_wall)
@@ -273,17 +259,6 @@ class SceneManager:
         stats = Stats()
         cast.add_actor(STATS_GROUP, stats)
 
-    # def _add_racket(self, cast):
-    #     cast.clear_actors(RACKET_GROUP)
-    #     x = CENTER_X - RACKET_WIDTH / 2
-    #     y = SCREEN_HEIGHT - RACKET_HEIGHT
-    #     position = Point(x, y)
-    #     size = Point(RACKET_WIDTH, RACKET_HEIGHT)
-    #     velocity = Point(0, 0)
-    #     body = Body(position, size, velocity)
-    #     animation = Animation(RACKET_IMAGES, RACKET_RATE)
-    #     racket = Racket(body, animation)
-    #     cast.add_actor(RACKET_GROUP, racket)
 
     # ----------------------------------------------------------------------------------------------
     # scripting methods
@@ -299,13 +274,10 @@ class SceneManager:
     def _add_output_script(self, script):
         script.clear_actions(OUTPUT)
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
-        # script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
-        # script.add_action(OUTPUT, self.DRAW_BALL_ACTION)
+        script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
         script.add_action(OUTPUT, self.DRAW_CAR_ACTION)
         script.add_action(OUTPUT, self.DRAW_ROAD_ACTION)
         script.add_action(OUTPUT, self.DRAW_TRAFFIC_ACTION)
-        # script.add_action(OUTPUT, self.DRAW_BRICKS_ACTION)
-        # script.add_action(OUTPUT, self.DRAW_RACKET_ACTION)
         script.add_action(OUTPUT, self.DRAW_DIALOG_ACTION)
         script.add_action(OUTPUT, self.END_DRAWING_ACTION)
 
@@ -315,16 +287,13 @@ class SceneManager:
     
     def _add_unload_script(self, script):
         script.clear_actions(UNLOAD)
-        # script.add_action(UNLOAD, self.UNLOAD_ASSETS_ACTION)
+        script.add_action(UNLOAD, self.UNLOAD_ASSETS_ACTION)
         
     def _add_update_script(self, script):
         script.clear_actions(UPDATE)
-        # script.add_action(UPDATE, self.MOVE_BALL_ACTION)
+        script.add_action(UPDATE, self.CONTROL_TRAFFIC_ACTION)
         script.add_action(UPDATE, self.MOVE_CAR_ACTION)
         script.add_action(UPDATE, self.MOVE_TRAFFIC_ACTION)
         script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
         script.add_action(UPDATE, self.COLLIDE_TRAFFIC_ACTION)
-        # script.add_action(UPDATE, self.COLLIDE_BRICKS_ACTION)
-        # script.add_action(UPDATE, self.COLLIDE_RACKET_ACTION)
-        # script.add_action(UPDATE, self.MOVE_RACKET_ACTION)
         # script.add_action(UPDATE, self.CHECK_OVER_ACTION)
