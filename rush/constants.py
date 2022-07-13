@@ -1,4 +1,5 @@
 from game.casting.color import Color
+import pathlib
 
 # -------------------------------------------------------------------------------------------------- 
 # GENERAL GAME CONSTANTS
@@ -14,6 +15,10 @@ SCREEN_HEIGHT = 600 #680
 CENTER_X = SCREEN_WIDTH / 2
 CENTER_Y = SCREEN_HEIGHT / 2
 
+# DIRECTORIES
+ASSETS_DIR = f'{pathlib.Path(__file__).parent.resolve()}/assets'
+IMAGES_PATH = f"{ASSETS_DIR}/images"
+
 # FIELD
 FIELD_TOP = 60
 FIELD_BOTTOM = SCREEN_HEIGHT
@@ -21,15 +26,15 @@ FIELD_LEFT = 0
 FIELD_RIGHT = SCREEN_WIDTH
 
 # FONT
-FONTS_PATH = "rush/assets/fonts" 
+FONTS_PATH = f"{ASSETS_DIR}/fonts" 
 FONT_FILE = FONTS_PATH + "/zorque.otf"
 FONT_SMALL = 32
 FONT_LARGE = 48
 
 # SOUND
-BOUNCE_SOUND = "rush/assets/sounds/boing.wav"
-WELCOME_SOUND = "rush/assets/sounds/start.wav"
-OVER_SOUND = "rush/assets/sounds/over.wav"
+BOUNCE_SOUND = f"{ASSETS_DIR}/sounds/boing.wav"
+WELCOME_SOUND = f"{ASSETS_DIR}/sounds/start.wav"
+OVER_SOUND = f"{ASSETS_DIR}/sounds/over.wav"
 
 # TEXT
 ALIGN_CENTER = 0
@@ -56,7 +61,7 @@ IN_PLAY = 3
 GAME_OVER = 4
 
 # LEVELS
-LEVEL_FILE = "rush/assets/data/level-{:03}.txt"
+LEVEL_FILE = f"{ASSETS_DIR}/data/level-{{:03}}.txt"
 BASE_LEVELS = 5
 
 # -------------------------------------------------------------------------------------------------- 
@@ -92,7 +97,7 @@ SCORE_FORMAT = "SCORE: {}"
 
 # CAR
 CAR_GROUP = "cars"
-CAR_IMAGE = "rush/assets/images/car1.png"
+CAR_IMAGE = f"{ASSETS_DIR}/images/car1.png"
 CAR_WIDTH = 23
 CAR_HEIGHT = 47
 #CAR_RATE = 6 # used with animation
@@ -101,17 +106,17 @@ CAR_VELOCITY = 5
 
 ROAD_GROUP = "road_walls"
 ROAD_IMAGE = {
-    "left":"rush/assets/images/left.png",
-    "right":"rush/assets/images/right.png"
+    "left":f"{ASSETS_DIR}/images/left.png",
+    "right":f"{ASSETS_DIR}/images/right.png"
     }
 
 TRAFFIC_GROUP = "traffic"
 TRAFFIC_VELOCITY = 2
 TRAFFIC_CARS = 15
 CAR_IMAGES = [
-    "rush/assets/images/car2.png",
-    "rush/assets/images/car3.png",
-    "rush/assets/images/car4.png"
+    f"{ASSETS_DIR}/images/car2.png",
+    f"{ASSETS_DIR}/images/car3.png",
+    f"{ASSETS_DIR}/images/car4.png"
  ]
 
 
