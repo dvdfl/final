@@ -105,14 +105,24 @@ CAR_VELOCITY = 5
 
 
 ROAD_GROUP = "road_walls"
-ROAD_IMAGE = {
-    "left":f"{ASSETS_DIR}/images/left.png",
-    "right":f"{ASSETS_DIR}/images/right.png"
+
+ROAD_IMAGES = {
+    "left":{
+            "path" : f"{ASSETS_DIR}/images/left.png",
+            "width" : 126,
+            "height" : 599
+        },
+    "right": {
+            "path" : "f"{ASSETS_DIR}/images/right.png",
+            "width": 303,
+            "height" : 598
+        }
     }
 
 TRAFFIC_GROUP = "traffic"
 TRAFFIC_VELOCITY = 2
 TRAFFIC_CARS = 15
+TRAFFIC_POINTS = 10
 CAR_IMAGES = [
     f"{ASSETS_DIR}/images/car2.png",
     f"{ASSETS_DIR}/images/car3.png",
