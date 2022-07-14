@@ -1,9 +1,8 @@
-import random
 from constants import *
 from game.casting.point import Point
 
 class Car():
-    """A car representation, it can be palayers of part of the traffic in the game."""
+    """A car representation, it can be player's car or part of the traffic in the game."""
     
     def __init__(self, body, image):
         """Constructs a new Car object.
