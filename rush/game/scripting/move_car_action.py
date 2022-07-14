@@ -9,8 +9,8 @@ class MoveCarAction(Action):
         pass
 
     def execute(self, cast, script, callback):
-        racket = cast.get_first_actor(CAR_GROUP)
-        body = racket.get_body()
+        car = cast.get_first_actor(CAR_GROUP)
+        body = car.get_body()
         velocity = body.get_velocity()
         position = body.get_position()
         x = position.get_x()

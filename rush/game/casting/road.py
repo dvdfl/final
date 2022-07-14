@@ -1,11 +1,8 @@
 import random
 from constants import *
-#from game.casting.actor import Actor
-from game.casting.point import Point
+from game.casting.actor import Actor
 
-
-#class Ball(Actor):
-class Road():
+class Road(Actor):
     """A solid, rectangle static object in the game."""
     
     def __init__(self, body, image):
@@ -15,16 +12,8 @@ class Road():
             body: A new instance of Body.
             image: A new instance of Image.
         """
-        self._body = body
+        super().__init__(body)
         self._image = image
-
-    def get_body(self):
-        """Gets the road's body.
-        
-        Returns:
-            An instance of Body.
-        """
-        return self._body
 
     def get_image(self):
         """Gets the road's image.

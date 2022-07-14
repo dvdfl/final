@@ -155,7 +155,7 @@ class SceneManager:
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
         image = Image(left_road_image['path'])
-        left_wall = Road(body, image, True)
+        left_wall = Road(body, image)
 
         cast.add_actor(ROAD_GROUP, left_wall)
 
@@ -168,7 +168,7 @@ class SceneManager:
         velocity = Point(0, 0)
         right_body = Body(position, size, velocity)
         right_image = Image(right_road_image['path'])
-        right_wall = Road(right_body, right_image, True)
+        right_wall = Road(right_body, right_image)
 
         cast.add_actor(ROAD_GROUP, right_wall)
 

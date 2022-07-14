@@ -1,8 +1,9 @@
 from constants import *
+from game.casting.actor import Actor
 from game.casting.point import Point
 
-class Car():
-    """A car representation, it can be player's car or part of the traffic in the game."""
+class Car(Actor):
+    """A car representation, it can be palayers of part of the traffic in the game."""
     
     def __init__(self, body, image):
         """Constructs a new Car object.
@@ -11,16 +12,8 @@ class Car():
             body: A new instance of Body.
             image: A new instance of Image.
         """
-        self._body = body
+        super().__init__(body)
         self._image = image
-
-    def get_body(self):
-        """Gets the car's body.
-        
-        Returns:
-            An instance of Body.
-        """
-        return self._body
 
     def get_image(self):
         """Gets the car's image.
