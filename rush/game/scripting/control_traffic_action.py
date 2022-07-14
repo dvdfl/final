@@ -50,7 +50,7 @@ class ControlTrafficAction(Action):
             velocity = Point(0, 0)
             body = Body(position, size, velocity)
             image = Image(random.choice(CAR_IMAGES))
-            car = Car(body, image, True)
+            car = Car(body, image)
 
             cast.add_actor(TRAFFIC_GROUP, car)
 

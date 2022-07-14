@@ -137,7 +137,7 @@ class SceneManager:
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
         image = Image(CAR_IMAGE)
-        car = Car(body, image, True)
+        car = Car(body, image)
         cast.add_actor(CAR_GROUP, car)
 
     def _add_road_walls(self, cast):
